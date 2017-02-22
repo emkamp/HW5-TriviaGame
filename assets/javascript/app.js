@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-    var totalTime = 40
-    var countdown = 41;
+    var totalTime = 30
+    var countdown = totalTime + 1;
     var timeBarWidth;
     var score = 0;
     var totalQuestions = 5;
@@ -64,9 +64,10 @@ $(document).ready(function() {
     }
 
     setTimeBar();
+    var interval;
 
     function setTime() {
-        setInterval(setTimeBar, 1000);
+        interval = setInterval(setTimeBar, 1000);
     }
 
     function gameOver() {
@@ -74,6 +75,7 @@ $(document).ready(function() {
         $("#answer-choices").hide();
         $("h2").html("Game Over");
         $("#message").show().html("You scored " + score + " out of " + totalQuestions);
+        clearInterval(interval);
     }
 
     function buildPage(obj) {
