@@ -69,14 +69,6 @@ $(document).ready(function() {
         interval = setInterval(setTimeBar, 1000);
     }
 
-    function gameOver() {
-        $("#next").hide();
-        $("#answer-choices").hide();
-        $("h2").html("Game Over");
-        $("#message").show().html("You scored " + score + " out of " + totalQuestions);
-        clearInterval(interval);
-    }
-
     function buildPage(obj) {
         $("h2").html(obj.question);
         $("#answer-choice-1").attr({ "value": obj.answer1 })
@@ -86,9 +78,9 @@ $(document).ready(function() {
         $("#answer-choice-3").attr({ "value": obj.answer3 });
         $("#answer-choice-3-label").attr({ "for": obj.answer3 }).html(obj.answer3);
     }
+    var myAnswer;
 
     function keepScore() {
-        var myAnswer = $("input[name=answer]:checked").val();
         console.log("currentQuestion = " + currentQuestion + ", myAnswer = " + myAnswer);
         if (currentQuestion === 0 && myAnswer === "answer-choice-2") {
             score++;
@@ -110,6 +102,14 @@ $(document).ready(function() {
         }
     }
 
+    function gameOver() {
+    	keepScore();
+        $("#next").hide();
+        $("#answer-choices").hide();
+        $("h2").html("Game Over");
+        $("#message").show().html("You scored " + score + " out of " + totalQuestions);
+        clearInterval(interval);
+    }
     $("#start").click(function() {
         $("#start").hide();
         $("#message").hide();
@@ -123,7 +123,8 @@ $(document).ready(function() {
         // see which answer is checked.  
         // use conditionals to compare this answer to its question
         // score++ if match
-        console.log("score = " + score);
+        myAnswer = $("input[name=answer]:checked").attr("id");
+        console.log("score = " + score + ", myAnswer = " + myAnswer);
 
         if (currentQuestion < 4) {
             $('.answer').prop('checked', false);
