@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Peep Show Fan Trivia</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+</head>
+
+<body>
+    <h1>Peep Show Trivia!</h1>
+    <div id="container">
+        <div id="timer-outer"><span>Time Remaining:</span>
+            <div id="timer-inner">
+                <div class="timer-bar-full"></div>
+            </div>
+            <span id="timer-counter"></span>
+        </div>
+        <h2>Ready?</h2>
+        <h3 id="message"></h3>
+        <div id="answer-choices">
+            <form id="answer-form">
+                <input type="radio" name="answer" class="answer" id="answer-choice-1" value="" />
+                <label id="answer-choice-1-label" for=""></label>
+                <input type="radio" name="answer" class="answer" id="answer-choice-2" value="" />
+                <label id="answer-choice-2-label" for=""></label>
+                <input type="radio" name="answer" class="answer" id="answer-choice-3" value="" />
+                <label id="answer-choice-3-label" for=""></label>
+            </form>
+        </div>
+        <hr />
+        <p class="btn" id="start">Begin</p>
+        <p class="btn" id="next">Next</p>
+    </div>
+</body>
+
+</html>

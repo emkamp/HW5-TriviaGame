@@ -6,7 +6,7 @@ $(document).ready(function() {
     var score = 0;
     var totalQuestions = 5;
     var currentQuestion = 0;
-
+    var interval;
     var message = "You'll have " + totalTime + " seconds to answer " + totalQuestions + " questions."
 
     var question1 = {
@@ -52,11 +52,11 @@ $(document).ready(function() {
         if (countdown === 0) {
             $(".timer-bar-full").addClass("timer-bar-full-100");
             gameOver();
-        } else if (countdown < 10) {
+        } else if (countdown < 5) {
             countdown = countdown - 1;
             $("#timer-counter").html(" " + countdown + " seconds");
             $(".timer-bar-full").addClass("timer-danger");
-        } else if (countdown >= 10) {
+        } else if (countdown >= 5) {
             countdown = countdown - 1;
             $("#timer-counter").html(countdown + " seconds");
         }
@@ -64,7 +64,6 @@ $(document).ready(function() {
     }
 
     setTimeBar();
-    var interval;
 
     function setTime() {
         interval = setInterval(setTimeBar, 1000);
@@ -89,7 +88,26 @@ $(document).ready(function() {
     }
 
     function keepScore() {
-        //do a ton of if else statements to match answer to question and increment score if correct.
+        var myAnswer = $("input[name=answer]:checked").val();
+        console.log("currentQuestion = " + currentQuestion + ", myAnswer = " + myAnswer);
+        if (currentQuestion === 0 && myAnswer === "answer-choice-2") {
+            score++;
+            return;
+        } else if (currentQuestion === 1 && myAnswer === "answer-choice-2") {
+            score++;
+            return;
+        } else if (currentQuestion === 2 && myAnswer === "answer-choice-1") {
+            score++;
+            return;
+        } else if (currentQuestion === 3 && myAnswer === "answer-choice-3") {
+            score++;
+            return;
+        } else if (currentQuestion === 4 && myAnswer === "answer-choice-3") {
+            score++;
+            return;
+        } else {
+            return;
+        }
     }
 
     $("#start").click(function() {
@@ -105,8 +123,11 @@ $(document).ready(function() {
         // see which answer is checked.  
         // use conditionals to compare this answer to its question
         // score++ if match
+        console.log("score = " + score);
+
         if (currentQuestion < 4) {
             $('.answer').prop('checked', false);
+            keepScore();
             currentQuestion++;
             buildPage(questionArray[currentQuestion]);
         } else {
