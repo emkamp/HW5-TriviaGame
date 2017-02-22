@@ -1,18 +1,14 @@
 $(document).ready(function() {
 
-	var totalTime = 40
+    var totalTime = 40
     var countdown = 41;
     var timeBarWidth;
     var score = 0;
     var totalQuestions = 5;
     var currentQuestion = 0;
 
-    $("#next").hide();
+    var message = "You'll have " + totalTime + " seconds to answer " + totalQuestions + " questions."
 
-    var question0 = {
-        "question": "Ready?",
-        "answer1": "You'll have " + totalTime + " seconds to answer " + totalQuestions + " questions."
-    }
     var question1 = {
         "question": "At Christmas dinner, Mark and his father argue about whether or not one of the dishes is traditional. Which was it?",
         "answer1": "Ham",
@@ -44,14 +40,18 @@ $(document).ready(function() {
         "answer3": "Crack"
     };
 
-    var questionArray = [question0, question1, question2, question3, question4, question5];
+    var questionArray = [question1, question2, question3, question4, question5];
+
+    $("#next").hide();
+    $("#message").html(message);
+    $("#answer-choices").hide();
 
     function setTimeBar() {
-    var timeBarWidth = (100 - ((countdown / totalTime) * 100)) + "%";
+        var timeBarWidth = (100 - ((countdown / totalTime) * 100)) + "%";
         $(".timer-bar-full").css("width", timeBarWidth);
         if (countdown === 0) {
             $(".timer-bar-full").addClass("timer-bar-full-100");
-            //run game over function
+            gameOver();
         } else if (countdown < 10) {
             countdown = countdown - 1;
             $("#timer-counter").html(" " + countdown + " seconds");
@@ -71,54 +71,44 @@ $(document).ready(function() {
 
     function gameOver() {
         $("#next").hide();
-        $("#answer-choice-2").hide();
-        $("#answer-choice-3").hide();
+        $("#answer-choices").hide();
         $("h2").html("Game Over");
-        $("answer-choice-1").html("You scored " + score + " out of " + totalQuestions);
+        $("#message").show().html("You scored " + score + " out of " + totalQuestions);
     }
 
     function buildPage(obj) {
         $("h2").html(obj.question);
-        $("#answer-choice-1").attr({"value": obj.answer1})
-        $("#answer-choice-1-label").attr({"for":obj.answer1}).html(obj.answer1);
-        $("#answer-choice-2").attr({"value": obj.answer2});
-        $("#answer-choice-2-label").attr({"for":obj.answer2}).html(obj.answer2);
-        $("#answer-choice-3").attr({"value": obj.answer3});
-        $("#answer-choice-3-label").attr({"for":obj.answer3}).html(obj.answer3);
-}
+        $("#answer-choice-1").attr({ "value": obj.answer1 })
+        $("#answer-choice-1-label").attr({ "for": obj.answer1 }).html(obj.answer1);
+        $("#answer-choice-2").attr({ "value": obj.answer2 });
+        $("#answer-choice-2-label").attr({ "for": obj.answer2 }).html(obj.answer2);
+        $("#answer-choice-3").attr({ "value": obj.answer3 });
+        $("#answer-choice-3-label").attr({ "for": obj.answer3 }).html(obj.answer3);
+    }
 
-function keepScore(){
-	//do a ton of if else statements to match answer to question and increment score if correct.
-}
-
-    buildPage(questionArray[0]);
+    function keepScore() {
+        //do a ton of if else statements to match answer to question and increment score if correct.
+    }
 
     $("#start").click(function() {
         $("#start").hide();
+        $("#message").hide();
         $("#next").show();
+        $("#answer-choices").show();
         setTime();
-        buildPage(questionArray[1]);
-        currentQuestion++;
+        buildPage(questionArray[0]);
     });
 
     $("#next").click(function() {
-        if (currentQuestion < 5) {
+        // see which answer is checked.  
+        // use conditionals to compare this answer to its question
+        // score++ if match
+        if (currentQuestion < 4) {
+            $('.answer').prop('checked', false);
             currentQuestion++;
             buildPage(questionArray[currentQuestion]);
         } else {
             gameOver();
         }
     });
-
-    $(".answer").click(function(){
-    	//console.log(questionArray[currentQuestion]);
-    	console.log(this);
-    	keepScore(this.attr(id));
-    })
-
-    /*
-if questionArray (this)object.item contains x, score++
-
-    */
-
 });
