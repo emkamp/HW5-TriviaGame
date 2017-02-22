@@ -1,0 +1,84 @@
+body,
+html {
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    background: #eee url('../images/leather.png') repeat 0 0;
+    color: #233;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    padding: 40px;
+    background: #1f473e url(../images/header.jpg) no-repeat 0 -30px;
+    background-size: auto 260px;
+    height: 150px;
+    font-size: 72px;
+    line-height: 230px;
+    color: #fff;
+    text-align: center;
+    text-shadow: #0d1e1a -2px 2px 0px;
+}
+
+h2 {}
+
+#container {
+    width: 60%;
+    margin: 10px auto;
+    border: 1px solid #8dc1b4;
+    padding: 40px;
+    background-color: #c7dcd7;
+}
+
+#answer-choices {}
+
+#timer-outer {
+    text-align: center;
+    line-height: 20px;
+    padding: 0 0 20px 0;
+    border-radius: 4px;
+}
+
+#timer-inner {
+    height: 20px;
+    width: 200px;
+    padding: 1px;
+    background-color: #bbb;
+    margin: 2px 5px -7px 5px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.timer-bar-full {
+    background-color: #4085e6;
+    height: 20px;
+    z-index: 10;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.timer-bar-full-100 {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.timer-danger{
+	background-color: #b44;
+}
+
+.result {}
+.answer:hover { border: 1px solid #449; }
+.btn {
+    display: inline-block;
+    padding: 10px 40px;
+    border-radius: 4px;
+    background-color: #493;
+    border-color: #362;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+hr { border: 1px solid #8dc1b4; }
